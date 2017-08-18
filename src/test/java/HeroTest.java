@@ -26,4 +26,12 @@ public class HeroTest {
     assertEquals(true, Hero.all().contains(firstHero));
   }
 
+  //clearing previously created heroes
+  @Test
+  public void clear_clearAllPreviousHeroes_0(){
+    Hero newHero = new Hero("Dany", 25, "Fire breather", "Too kind");
+    Hero.clear();
+    assertEquals(Hero.all().size(), 0);
+  }
+
 }

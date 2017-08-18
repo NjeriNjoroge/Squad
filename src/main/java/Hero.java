@@ -43,4 +43,9 @@ public class Hero {
 public static List<Hero> all(){
   return instances;
 }
+
+//clearing previous created heroes
+public static void clear(){
+  instances.clear();
+}
   }
