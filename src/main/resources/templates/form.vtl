@@ -1,10 +1,14 @@
 <h2>Your Hero</h2>
-#if ($hero)
-  <h2>$hero.getName()</h2>
-  <ul>
+
+#if ($heroes)
+<ul>
+  #foreach ($hero in $heroes)
+    <h2>$hero.getName()</h2>
     <li>Age: $hero.getAge()</li>
     <li>Special power: $hero.getSpecialPower()</li>
     <li>Weakness: $hero.getWeakness()</li>
+
+    #end
   </ul>
 #else
 <p>No hero created!</p>
