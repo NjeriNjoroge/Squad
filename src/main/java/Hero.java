@@ -19,10 +19,26 @@ public class Hero {
     instances.add(this);
   }
 
-  //getting a particular attribute
+  //getting a name attribute
   public String getName(){
     return mName;
   }
+
+  //getting a age attribute
+  public int getAge(){
+    return mAge;
+  }
+
+  //getting a special power attribute
+  public String getSpecialPower(){
+    return mSpecialPower;
+  }
+
+  //getting a weakness attribute
+  public String getWeakness(){
+    return mWeakness;
+  }
+
 //return all heroes created
 public static List<Hero> all(){
   return instances;
