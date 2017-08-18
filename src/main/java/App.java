@@ -10,20 +10,32 @@ public class App {
     String layout = "templates/layout.vtl";
 
 //route for showing the form
-get("/", (request, response) -> {
+// get("/", (request, response) -> {
+//   Map<String, Object> model = new HashMap<String, Object>();
+//   model.put("template", "templates/form.vtl");
+//   return new ModelAndView(model, layout);
+// }, new VelocityTemplateEngine());
+
+//picking values from the form.vtl
+post("/hero", (request, response) -> {
   Map<String, Object> model = new HashMap<String, Object>();
-  model.put("template", "templates/form.vtl");
+
+  String createdName = request.queryParams("name");
+  int createdAge = Integer.parseInt(request.queryParams("age"));
+  String createdSpecialPower = request.queryParams("specialPower");
+  String createdWeakness = request.queryParams("weakness");
+  Hero newHero = new Hero(createdName, createdAge, createdSpecialPower, createdWeakness);
+  request.session().attribute("hero", newHero);
+
+  model.put("template", "templates/success.vtl");
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
-//displaying the created hero
-get("/hero", (request, response) -> {
+//displaying task on index template
+get("/", (request, response) -> {
   Map<String, Object> model = new HashMap<String, Object>();
-  model.put("name", request.queryParams("name"));
-  model.put("age", request.queryParams("age"));
-  model.put("specialPower", request.queryParams("specialPower"));
-  model.put("weakness", request.queryParams("weakness"));
-  model.put("template", "templates/hero.vtl");
+  model.put("hero", request.session().attribute("hero"));
+  model.put("template", "templates/form.vtl");
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 

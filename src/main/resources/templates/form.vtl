@@ -1,5 +1,18 @@
+<h2>Your Hero</h2>
+#if ($hero)
+  <h2>$hero.getName()</h2>
+  <ul>
+    <li>$hero.getAge()</li>
+    <li>$hero.getSpecialPower()</li>
+    <li>$hero.getWeakness()</li>
+  </ul>
+#else
+<p>No hero created!</p>
+#end
+
+
 <h1>Create A Hero!</h1>
-<form action="/hero">
+<form action="/hero" method="post">
 
 <div class="form-group">
   <label for="name">A name</label>
