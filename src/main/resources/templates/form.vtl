@@ -1,15 +1,22 @@
 <h2>Your Hero</h2>
 
 #if ($heroes)
-<ul>
+<table>
+<tr>
+<th>Name</th>
+  <th>Age</th>
+    <th>Special Powers</th>
+      <th>Weakness</th>
+    </tr>
   #foreach ($hero in $heroes)
-    <h2>$hero.getName()</h2>
-    <li>Age: $hero.getAge()</li>
-    <li>Special power: $hero.getSpecialPower()</li>
-    <li>Weakness: $hero.getWeakness()</li>
-
+  <tr>
+    <td>$hero.getName()</td>
+    <td>$hero.getAge()</td>
+    <td> $hero.getSpecialPower()</td>
+    <td> $hero.getWeakness()</td>
+</tr>
     #end
-  </ul>
+  </table>
 #else
 <p>No hero created!</p>
 #end

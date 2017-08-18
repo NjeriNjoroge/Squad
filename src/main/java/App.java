@@ -26,7 +26,6 @@ post("/hero", (request, response) -> {
   String createdWeakness = request.queryParams("weakness");
   Hero newHero = new Hero(createdName, createdAge, createdSpecialPower, createdWeakness);
   heroes.add(newHero);
-  //request.session().attribute("hero", newHero);
 
   model.put("template", "templates/success.vtl");
   return new ModelAndView(model, layout);
