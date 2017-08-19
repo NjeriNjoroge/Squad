@@ -34,4 +34,20 @@ public class HeroTest {
     assertEquals(Hero.all().size(), 0);
   }
 
+  //assigning and accessing hero IDs
+  @Test
+  public void createID_createsHeroWithId_1(){
+    Hero.clear();
+    Hero newHero = new Hero("Dany", 25, "Fire breather", "Too kind");
+    assertEquals(1, newHero.createID());
+  }
+
+//locating specific Heroes using their unique IDs
+@Test
+public void find_locatesHeroesWithIDs_thirdHero(){
+  Hero firstHero = new Hero("Dany", 25, "Fire breather", "Too kind");
+  Hero secondHero = new Hero("Arya", 17, "Ninja", "Scary");
+  Hero thirdHero = new Hero("Cersie", 36, "Smart", "Jaime");
+  assertEquals(Hero.find(thirdHero.createID()), thirdHero);
+}
 }

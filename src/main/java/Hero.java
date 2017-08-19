@@ -9,6 +9,7 @@ public class Hero {
   private String mSpecialPower;
   private String mWeakness;
   private static List<Hero> instances = new ArrayList<Hero>();
+  private int mId;
 
   //Constructor
   public Hero ( String name, int age,String specialPower, String weakness){
@@ -17,6 +18,7 @@ public class Hero {
     mSpecialPower = specialPower;
     mWeakness = weakness;
     instances.add(this);
+    mId = instances.size();
   }
 
   //getting a name attribute
@@ -48,4 +50,15 @@ public static List<Hero> all(){
 public static void clear(){
   instances.clear();
 }
+
+//assigning and accessing IDs
+public int createID(){
+  return mId;
+}
+
+//locating specific Heroes using their unique IDs
+public static Hero find(int id){
+  return instances.get(id - 1);
+}
+
   }
