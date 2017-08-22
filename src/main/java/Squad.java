@@ -26,6 +26,16 @@ public class Squad{
     return mCause;
   }
 
+  //returning max size
+  public int getMaxSize(){
+    return mMaxSize;
+  }
+
+  //returning name
+  public String getName(){
+    return mName;
+  }
+
   //returning the array of Squad
   public static List<Squad> all(){
     return instances;
@@ -51,7 +61,7 @@ public class Squad{
     return mHero;
   }
 
-//
+//adds a hero to a squad
 public void addHero(Hero hero){
   mHero.add(hero);
 }

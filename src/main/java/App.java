@@ -61,9 +61,28 @@ get("/heroes", (request, response) -> {
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
+//displays the form for creating a new hero
 get("/hero/new", (request, response) -> {
   Map<String, Object> model = new HashMap<String, Object>();
   model.put("template", "templates/form.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+//new squad form
+get("/squad/new", (request, respond) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  model.put("template", "templates/squad-form.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+//get values inputted in form fields
+post("/squad", (request, repsond) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  String name = request.queryParams("name");
+  String cause = request.queryParams("cause");
+  int createdSize = Integer.parseInt(request.queryParams("maximum-size"));
+  Squad newSquad = new Squad(name, cause, createdSize);
+  model.put("template", "templates/squad-success.vtl");
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
