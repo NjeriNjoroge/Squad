@@ -86,5 +86,14 @@ post("/squad", (request, repsond) -> {
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
+//displays the squads created
+get("/squads", (request, repsonse) ->{
+  Map<String, Object> model = new HashMap<String, Object>();
+  model.put("squads", Squad.all());
+  model.put("template", "templates/squads.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+
   }
 }
