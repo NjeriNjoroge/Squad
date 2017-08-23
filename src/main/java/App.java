@@ -78,7 +78,7 @@ get("/squad/new", (request, respond) -> {
 //get values inputted in form fields
 post("/squad", (request, repsond) -> {
   Map<String, Object> model = new HashMap<String, Object>();
-  String name = request.queryParams("name");
+  String name = request.queryParams("Sname");
   String cause = request.queryParams("cause");
   int createdSize = Integer.parseInt(request.queryParams("maximum-size"));
   Squad newSquad = new Squad(name, cause, createdSize);
@@ -94,6 +94,23 @@ get("/squads", (request, repsonse) ->{
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
+//displays a selected squad by accessing its ID
+get("/squads/:id", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  Squad squad = Squad.find(Integer.parseInt(request.params(":id")));
+  model.put("squad", squad);
+  model.put("template", "templates/squad.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
+//creates a link to the create new hero form
+get("squads/:id/heroes/new", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+  Squad squad = Squad.find(Integer.parseInt(request.params(":id")));
+  model.put("squad", squad);
+  model.put("template", "templates/squad-heroes-form.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
 
   }
 }

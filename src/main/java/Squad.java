@@ -36,6 +36,11 @@ public class Squad{
     return mName;
   }
 
+  //returning squad id
+  public int getId(){
+    return mId;
+  }
+
   //returning the array of Squad
   public static List<Squad> all(){
     return instances;
