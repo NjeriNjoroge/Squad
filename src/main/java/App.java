@@ -112,5 +112,24 @@ get("squads/:id/heroes/new", (request, response) -> {
   return new ModelAndView(model, layout);
 }, new VelocityTemplateEngine());
 
+//processes the form submission and creates new hero in that squad
+post("/heroes", (request, response) -> {
+  Map<String, Object> model = new HashMap<String, Object>();
+
+  Squad squad = Squad.find(Integer.parseInt(request.queryParams("squadId")));
+
+  String createdName = request.queryParams("name");
+  int createdAge = Integer.parseInt(request.queryParams("age"));
+  String createdSpecialPower = request.queryParams("specialPower");
+  String createdWeakness = request.queryParams("weakness");
+  Hero testHero = new Hero(createdName, createdAge, createdSpecialPower, createdWeakness);
+
+  squad.addHero(testHero);
+
+  model.put("squad", squad);
+  model.put("template", "templates/squad-heroes-success.vtl");
+  return new ModelAndView(model, layout);
+}, new VelocityTemplateEngine());
+
   }
 }
